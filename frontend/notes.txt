@@ -1,0 +1,19 @@
+To Register a company with Bizlink
+
+Field Name	       Type	             Description
+Company Name	   Text	        Full legal or brand name of the company
+Email Address	   Email	    Official email for communication
+Phone Number	Number/Text	    Optional but helpful for B2B users
+Website (URL)	Text (URL)	    Company website link (optional but good)
+Location	  Dropdown/Text	    City & Country
+Industry	     Dropdown	    e.g. Electronics, Textile, Organic, etc.
+Tags	       Multiselect	    e.g. Supplier, Exporter, Manufacturer
+Company Logo	File Upload	    Small image for branding
+About / Desc	Textarea	    Brief intro about the company
+Product Types	Multiselect	    What kind of products they offer
+Years in Business	Number	    For trust (optional)
+
+Business Registration No.	        For admin verification
+Social Links  (LinkedIn/Facebook)	For credibility
+Company Size	e.g.            1–10, 11–50 employees
+Upload Catalog   (PDF)	        For buyers to download company brochure
