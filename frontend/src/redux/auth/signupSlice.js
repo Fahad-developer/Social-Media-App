@@ -38,7 +38,7 @@ const signupSlice = createSlice({
 
             .addCase(SingupUser.rejected, (state, action) => {
                 state.error = action.payload,
-                state.loading = false
+                    state.loading = false
             })
     }
 })

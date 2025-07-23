@@ -1,19 +1,19 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import { useAuth } from '../../hook/useAuth.js'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hook/useAuth'
+// import { useNavigate } from 'react-router-dom'
 
 export default function ProtectedRoute({ allowedRoles }) {
+    const isAuthenticated = useAuth()
     const { user } = useSelector(state => state.login)
-    const isAuth = useAuth()
 
-    // Loading phase
-    if (isAuth === null || !user) {
-        return <p>.....Loading</p>
+
+    // Show loading indicator while checking auth
+    if (isAuthenticated === null) {
+        return <div>Loading...</div>
     }
 
-    // Not authenticated
-    if (!isAuth) {
+    if (!isAuthenticated) {
         return <Navigate to="/login" />
     }
 

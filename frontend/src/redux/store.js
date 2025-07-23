@@ -7,6 +7,12 @@ import viewCompanyReducer from '../redux/company/viewUserCompanySlice'
 import createCompanyReducer from '../redux/company/createCompanySlice'
 import profileStatisticsReducer from '../redux/company/profileStatisticsSlice'
 import getCompanyProductsReducer from '../redux/products/getCompanyProductsSlice'
+import productDetailReducer from '../redux/products/getSpecificProductSlice'
+import allCompaniesReducer from '../redux/company/getAllCompaniesSlice'
+import followReducer from '../redux/company/followCompanySlice'
+import checkFollowReducer from '../redux/company/checkFollowingSlice'
+import allProductsReducer from '../redux/products/getAllProductsSlice'
+import likeProductReducer from '../redux/products/likeProductSlice'
 
 export const store = configureStore({
     reducer: {
@@ -16,6 +22,12 @@ export const store = configureStore({
         viewCompany: viewCompanyReducer,
         createCompany: createCompanyReducer,
         profileStatistics: profileStatisticsReducer,
-        companyProducts: getCompanyProductsReducer
+        companyProducts: getCompanyProductsReducer,
+        ProductDetails: productDetailReducer,
+        allCompanies: allCompaniesReducer,
+        follow: followReducer,
+        checkFollow: checkFollowReducer,
+        allProducts: allProductsReducer,
+        likeProduct: likeProductReducer
     }
 })

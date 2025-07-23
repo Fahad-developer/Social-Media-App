@@ -6,6 +6,6 @@ export const useOwner = () => {
 
     const companyId = company?.owner;
     const currentUserId = currentUser?._id;
-
+    
     return companyId === currentUserId;
 };

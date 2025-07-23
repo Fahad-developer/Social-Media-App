@@ -5,6 +5,28 @@ import asyncHandler from "../../utils/asyncErrorHandler/asyncHandler.js";
 
 
 
+// get all companies
+
+export const getAllCompanies = asyncHandler(async (req, res) => {
+    const companies = await Company.find({}).lean(); // lean() for plain objects
+
+    // Map through companies and attach product count
+    const companiesWithProductCount = await Promise.all(
+        companies.map(async (company) => {
+            const productCount = await Product.countDocuments({ company: company._id });
+            return {
+                ...company,
+                productCount, // add new field
+            };
+        })
+    );
+
+    return res.status(200).json({
+        success: true,
+        companies: companiesWithProductCount,
+    });
+});
+
 // 1- Create Company
 
 export const createCompany = asyncHandler(async (req, res) => {
@@ -158,6 +180,19 @@ export const follow = asyncHandler(async (req, res) => {
     });
 });
 
+
+// check Following
+
+export const checkFollowing = asyncHandler(async (req, res) => {
+    const userId = req.user._id
+    const { targetId } = req.params
+
+    const currentUser = await User.findById(userId)
+
+    const isFollowing = currentUser.following.includes(targetId.toString())
+
+    return res.status(200).json({ success: true, isFollowing })
+})
 
 
 // 8- Search Companies

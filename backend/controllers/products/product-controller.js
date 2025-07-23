@@ -60,7 +60,7 @@ export const updateProduct = asyncHandler(async (req, res) => {
 // 3- Get All Products
 
 export const getAllProducts = asyncHandler(async (req, res) => {
-    const allProducts = await Product.find({})
+    const allProducts = await Product.find({}).populate("company", "name profile")
 
     return res.status(200).json({ success: true, allProducts })
 })
@@ -148,4 +148,24 @@ export const getLikes = asyncHandler(async (req, res) => {
     const likes = users.length
 
     return res.status(200).json({ success: true, likes, users })
+})
+
+
+// 9- is Product Liked?
+
+export const isLiked = asyncHandler(async (req, res) => {
+    const userId = req.user._id
+    const { productId } = req.params
+
+    const product = await Product.findById(productId)
+
+    if (!product) throw new Error("Product not Found")
+
+    const user = await User.findOne(userId)
+
+    if (!user) throw new Error("User not Found")
+
+    const isLiked = user.likedProducts.includes(productId)
+
+    return res.status(200).json({ success: true, isLiked: isLiked })
 })

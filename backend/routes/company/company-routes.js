@@ -1,4 +1,4 @@
-import { createCompany, follow, getCompanyProducts, getCompanyProductsCount, profileStatistics, searchCompanies, specificProfile, updateCompany, viewProfile } from "../../controllers/company/company-controller.js";
+import { checkFollowing, createCompany, follow, getAllCompanies, getCompanyProducts, getCompanyProductsCount, profileStatistics, searchCompanies, specificProfile, updateCompany, viewProfile } from "../../controllers/company/company-controller.js";
 import { auth } from "../../middlewares/auth/auth-middleware.js";
 import { authorizeUser } from "../../middlewares/authorize/authorize-middleware.js";
 import { upload } from '../../middlewares/multer/multer.js'
@@ -17,5 +17,7 @@ router.get('/getCount/:id', auth, authorizeUser("user"), getCompanyProductsCount
 router.post('/following/:targetId', auth, authorizeUser("user"), follow)
 router.get('/search', auth, authorizeUser("user"), searchCompanies)
 router.get('/getStatistics', auth, authorizeUser("user"), profileStatistics)
+router.get('/allCompanies', getAllCompanies)
+router.get('/checkFollowing/:targetId', auth, authorizeUser("user"), checkFollowing)
 
 export default router

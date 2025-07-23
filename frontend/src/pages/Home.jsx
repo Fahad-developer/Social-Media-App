@@ -21,9 +21,7 @@ const Home = () => {
 
         {/* Feed */}
         <main className="flex-1 p-4 space-y-4 overflow-y-auto">
-          {posts.map((post) => (
-            <ProductPost key={post.id} post={post} />
-          ))}
+            <ProductPost />
         </main>
 
         {/* Right Sidebar */}

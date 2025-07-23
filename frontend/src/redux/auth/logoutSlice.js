@@ -5,13 +5,13 @@ import { toast } from 'react-toastify'
 
 export const LogoutUser = createAsyncThunk('logout', async () => {
     const response = await api.post('/api/v1/auth/logout')
-    toast.success("Logged Out Successfully.")
     return response.data
 })
 
 
 const logoutSlice = createSlice({
     name: "logout",
+
     initialState: {
         isLoggedOut: false,
         loading: false,
@@ -21,13 +21,15 @@ const logoutSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(LogoutUser.pending, (state) => {
-                state.loading = true,
-                    state.error = null
+                state.loading = true
+                state.error = null
             })
 
             .addCase(LogoutUser.fulfilled, (state) => {
-                state.loading = false,
-                    state.isLoggedOut = true
+                state.loading = false
+                state.isLoggedOut = true
+                localStorage.removeItem("token")
+                toast.success("Logged Out Successfully.")
             })
 
             .addCase(LogoutUser.rejected, (state, action) => {

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import api from '../axios/axiosConfig.js'
 
 
 // Hook to check Authentication.
@@ -9,17 +8,26 @@ export function useAuth() {
     const [isAuthenticated, setIsAuthenticated] = useState(null)
 
     useEffect(() => {
-        const check = async () => {
-            try {
-                await api.post('/api/v1/auth/checkAuth')
-                setIsAuthenticated(true)
-            } catch (error) {
-                setIsAuthenticated(false)
-            }
-        }
+        const token = localStorage.getItem("token")
 
-        check()
+        if (token) {
+            setIsAuthenticated(true)
+        } else {
+            setIsAuthenticated(false)
+        }
     }, [])
 
     return isAuthenticated
 }
+
+
+// const check = async () => {
+//             try {
+//                 await api.get('/api/v1/auth/checkAuth')
+//                 setIsAuthenticated(true)
+//             } catch (error) {
+//                 setIsAuthenticated(false)
+//             }
+//         }
+
+//         check()

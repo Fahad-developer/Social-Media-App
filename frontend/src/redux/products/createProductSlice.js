@@ -8,6 +8,8 @@ export const createProduct = createAsyncThunk("createProduct", async (formData) 
             "Content-Type": "multipart/form-data"
         }
     });
+
+    toast.success("Product Added Successfully.")
     return response.data;
 });
 
@@ -32,7 +34,7 @@ const createProductSlice = createSlice({
 
             .addCase(createProduct.fulfilled, (state, action) => {
                 state.loading = false
-                state.product = true
+                state.product = action.payload
                 state.error = null
             })
 

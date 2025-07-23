@@ -1,13 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCompanyProducts } from "../redux/products/getCompanyProductsSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileContent() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const products = useSelector((state) => state.companyProducts.products || []);
 
-  console.log(products)
+  function handleClick(productId) {
+    navigate(`/productDetail/${productId}`)
+  }
+
 
   useEffect(() => {
     dispatch(getCompanyProducts())
@@ -17,7 +22,7 @@ export default function ProfileContent() {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 px-4">
       {products && products.length > 0 ? (
         products.map((product) => (
-          <div key={product._id} className="bg-white border p-3 rounded shadow-sm">
+          <div key={product._id} className="bg-white border p-3 rounded shadow-sm cursor-pointer" onClick={() => handleClick(product._id)}>
             <img src={`http://localhost:3000/uploads/products/${product.productImage}`} className="w-full h-40 object-cover mb-2 rounded" />
             <h2 className="font-medium">{product.productName}</h2>
             <h3 className="font-medium">{product.productDescription}</h3>

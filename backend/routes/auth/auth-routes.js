@@ -11,6 +11,6 @@ router.post('/createAccount', signUpLimiter, signUp)
 router.post('/login', login)
 router.post('/logout', auth, logout)
 router.post('/changePassword', auth, authorizeUser("user"), changePassword)
-router.post('/checkAuth', auth, checkAuth)
+router.get('/checkAuth', auth, checkAuth)
 
 export default router

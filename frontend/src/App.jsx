@@ -8,8 +8,6 @@ import ChangePassword from './pages/ChangePassword'
 import ProfilePage from "./pages/ProfilePage"
 import EditPage from "./pages/EditPage.jsx"
 
-import profile from './data/profile.js'
-import { useState } from "react"
 
 import ProtectedRoute from "./components/auth/ProtectedRoute.jsx"
 
@@ -17,9 +15,10 @@ import { ToastContainer } from 'react-toastify'
 import Unauthorized from "./pages/Unauthorized.jsx"
 import { CreateProduct } from "./components/CreateProduct.jsx"
 
+import ProductDetailPage from "./pages/ProductDetailPage.jsx"
+
 function App() {
 
-  const [isOwner] = useState(false)
 
   return (
     <>
@@ -37,6 +36,7 @@ function App() {
           <Route path="/changepassword" element={<ChangePassword />}></Route>
           <Route path="/edit" element={<EditPage />}></Route>
           <Route path="/createProduct" element={<CreateProduct />} ></Route>
+          <Route path="/productDetail/:id" element={<ProductDetailPage />} ></Route>
         </Route>
       </Routes>
     </>

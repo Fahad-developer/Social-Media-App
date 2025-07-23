@@ -56,7 +56,7 @@ export const login = asyncHandler(async (req, res) => {
 
     res.cookie("token", token, Options)
 
-    return res.status(200).json({ success: true, user })
+    return res.status(200).json({ success: true, user, token })
 })
 
 
@@ -70,25 +70,23 @@ export const logout = asyncHandler(async (req, res) => {
 })
 
 
-export const changePassword = asyncHandler(async(req, res) => {
+export const changePassword = asyncHandler(async (req, res) => {
 
     const id = req.user._id
 
-    console.log(id)
-    
     const { password, confirmPassword } = req.body
 
-    if(!password || !confirmPassword) throw new Error("Passwords cant be empty.")
+    if (!password || !confirmPassword) throw new Error("Passwords cant be empty.")
 
-    if(password != confirmPassword ) throw new Error("Password not matched.")
+    if (password != confirmPassword) throw new Error("Password not matched.")
 
     const user = await User.findById(id)
 
-    if(!user) throw new Error("User not Found")
+    if (!user) throw new Error("User not Found")
 
     const hashedPassword = await hashpass(password)
 
-    if(!hashedPassword) throw new Error("Error While Hashing Password.")
+    if (!hashedPassword) throw new Error("Error While Hashing Password.")
 
     user.password = hashedPassword
 
@@ -97,7 +95,7 @@ export const changePassword = asyncHandler(async(req, res) => {
     // Sending Alert Email.
     passwordChange(user.name, user.email)
 
-    res.status(200).json({ success:true })
+    res.status(200).json({ success: true })
 })
 
 
