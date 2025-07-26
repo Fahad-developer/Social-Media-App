@@ -16,6 +16,7 @@ import Unauthorized from "./pages/Unauthorized.jsx"
 import { CreateProduct } from "./components/CreateProduct.jsx"
 
 import ProductDetailPage from "./pages/ProductDetailPage.jsx"
+import SearchResults from "./pages/SearchResult.jsx"
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/edit" element={<EditPage />}></Route>
           <Route path="/createProduct" element={<CreateProduct />} ></Route>
           <Route path="/productDetail/:id" element={<ProductDetailPage />} ></Route>
+          <Route path="/search" element={<SearchResults />}></Route>
         </Route>
       </Routes>
     </>

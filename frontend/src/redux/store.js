@@ -13,6 +13,7 @@ import followReducer from '../redux/company/followCompanySlice'
 import checkFollowReducer from '../redux/company/checkFollowingSlice'
 import allProductsReducer from '../redux/products/getAllProductsSlice'
 import likeProductReducer from '../redux/products/likeProductSlice'
+import searchCompanies from '../redux/company/searchCompaniesSlice'
 
 export const store = configureStore({
     reducer: {
@@ -28,6 +29,7 @@ export const store = configureStore({
         follow: followReducer,
         checkFollow: checkFollowReducer,
         allProducts: allProductsReducer,
-        likeProduct: likeProductReducer
+        likeProduct: likeProductReducer,
+        searchCompanies: searchCompanies
     }
 })
